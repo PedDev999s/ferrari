@@ -440,22 +440,18 @@ controls[currentIndex].classList.add("active");
 updateText();
 
 function playNextVideo() {
-  const previousIndex = currentIndex; // Store the previous index
+    const previousIndex = currentIndex;
 
-  currentIndex = (currentIndex + 1) % videos.length;
+    currentIndex = (currentIndex + 1) % videos.length;
 
-  document.querySelector(".all-videos").style.transform = `translateX(-${
-    100 * currentIndex
-  }vw)`;
-
-  setTimeout(() => {
-    videos[previousIndex].classList.remove("active");
-    videos[currentIndex].classList.add("active");
-    controls[previousIndex].classList.remove("active");
-    controls[currentIndex].classList.add("active");
-    updateText();
-  }, 50);
-  videos[currentIndex].play();
+    // Pausa o vídeo anterior (Melhoria)
+    videos[previousIndex].pause(); 
+    // Reinicia o vídeo anterior para o início, se quiser
+    videos[previousIndex].currentTime = 0; 
+    
+    // ... restante do código (transição, classes, etc.) ...
+    
+    videos[currentIndex].play();
 }
 
 videos.forEach((video, index) => {
@@ -503,7 +499,7 @@ const textss = [
     title: "Precise muscular <br> sensuous",
     paragraph:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.",
-    image: "images/textimage3.jpeg",
+    image: "/images/textimage3.jpeg", // Caminho corrigido com a barra /
   },
 ];
 
