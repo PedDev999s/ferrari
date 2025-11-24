@@ -344,7 +344,7 @@
   pointer-events: auto;
 }
 
-.video-conatainer {
+.video-container {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -353,18 +353,21 @@
 }
 
 .all-videos {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  width: 300%;
-  /* overflow-x: hidden; */
+display: flex;
+transition: transform 0.3s ease-in-out; /* Crucial para a animação de deslize */
+width: 300%; /* Permite 3 vídeos de 100vw caberem lado a lado */
+/* Não precisa de overflow-x: hidden aqui, o container pai deve ter overflow: hidden */
 }
 
 video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  visibility: hidden;
+width: 100vw; /* Garante que cada vídeo ocupe a largura total da viewport */
+height: 100vh;
+object-fit: cover;
+/* REMOVIDO: visibility: hidden; */
 }
+
+/* A classe 'video.active' é agora DESNECESSÁRIA, pois o JavaScript
+   está controlando qual vídeo está 'ativo' através do transform no pai. */
 
 video.active {
   visibility: visible;
@@ -2005,3 +2008,5 @@ video.active {
     height: 1.4rem;
   }
 }
+
+
